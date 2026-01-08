@@ -1,7 +1,7 @@
 <?php
 // session begin
 session_start();
-include "koneksi.php";
+include "connect.php";
 
 if (isset($_SESSION['username'])) {
     header("location:admin.php");
