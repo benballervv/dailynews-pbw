@@ -100,11 +100,20 @@ include "connect.php";
       <h1 class="fw-bold display-4 pb-3">Galeri</h1>
       <div id="techCarousel" class="carousel slide shadow rounded overflow-hidden" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="https://plus.unsplash.com/premium_photo-1681313824743-7b5a2a635938?auto=format&fit=crop&q=60&w=500" class="d-block w-100" alt="galeri 1">
+            <?php
+            $sql_gal = "SELECT * FROM gallery ORDER BY tanggal DESC";
+            $res_gal = $conn->query($sql_gal);
+            $aktif = "active";
+            while($row = $res_gal->fetch_assoc()){ 
+ 			 ?>
+ 			 <div class="carousel-item <?= $aktif ?>">
+   				 <img src="img/<?= $row['gambar'] ?>" class="d-block w-100" alt="...">
+   				 <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+   				   <h5><?= $row['judul'] ?></h5>
+			    </div>
+ 			 </div>
+            <?php $aktif = ""; } ?> </div>
           </div>
-          <div class="carousel-item">
-            <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&q=60&w=500" class="d-block w-100" alt="galeri 2">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#techCarousel" data-bs-slide="prev">

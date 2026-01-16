@@ -28,11 +28,18 @@ if (!isset($_SESSION['username'])) {
                 <div class="navbar-nav me-auto">
                     <a class="nav-link" href="admin.php?page=dashboard">Dashboard</a>
                     <a class="nav-link" href="admin.php?page=article">Article</a>
+                    <a class="nav-link" href="admin.php?page=gallery">Gallery</a>
                 </div>
                 <div class="d-flex align-items-center">
-                    <span class="text-white me-3">Halo, <?= $_SESSION['username']; ?></span>
-                    <a href="logout.php" class="btn btn-outline-light btn-sm">Logout</a>
-                </div>
+                    <div class="dropdown me-3">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                            Halo, <?= $_SESSION['username']; ?>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="admin.php?page=profile">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="logout.php">Logout</a></li>
+                        </ul>
             </div>
         </div>
     </nav>
@@ -44,7 +51,7 @@ if (!isset($_SESSION['username'])) {
         if (file_exists($page . ".php")) {
             include($page . ".php");
         } else {
-            echo "<div class='alert alert-warning shadow-sm'>Halaman <b>$page.php</b> belum lu upload, Bro!</div>";
+            echo "<div class='alert alert-warning shadow-sm'>Halaman <b>$page.php</b> Belum Upload </div>";
         }
         ?>
     </div>
